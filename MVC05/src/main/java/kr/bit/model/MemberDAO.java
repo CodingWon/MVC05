@@ -15,6 +15,7 @@ public class MemberDAO {
 	private static SqlSessionFactory sessionFactory;
 	
 	static {
+		
 		try {
 			String resource = "kr/bit/mybatis/config.xml";
 			InputStream inputStream = Resources.getResourceAsStream(resource);
