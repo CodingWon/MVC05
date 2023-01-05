@@ -5,6 +5,9 @@
 	<select id="memberList" resultType="memberVO">
 		select * from member
 	</select>
-
-
+	
+	<insert id="memberInsert" parameterType="memberVO">
+		insert into member(id, pass, name, age, email, phone) 
+		values(#{id},#{pass},#{name},#{age},#{email},#{phone})
+	</insert>
 </mapper>

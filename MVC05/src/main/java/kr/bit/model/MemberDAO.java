@@ -36,6 +36,15 @@ public class MemberDAO {
 		
 		return list;
 	}
+	//회원 가입
+	public int memberInsert(MemberVO memberVO) {
+		SqlSession session = sessionFactory.openSession();
+		int cnt =session.insert("memberInsert",memberVO);
+		session.commit();
+		session.close();
+		
+		return cnt;
+	}
 
 }
 
