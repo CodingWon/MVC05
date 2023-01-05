@@ -4,8 +4,10 @@ import java.io.InputStream;
 // JDBC->myBatis, JPA
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 public class MemberDAO {
@@ -22,6 +24,17 @@ public class MemberDAO {
 			e.printStackTrace();
 		}
 	
+	}
+	
+	//회원전체 리스트보기
+	public List<MemberVO> memberList() {
+		//SqlSession 생성
+		SqlSession session = sessionFactory.openSession();
+		//mapper와 연결
+		List<MemberVO> list = session.selectList("memberList");
+		session.close();
+		
+		return list;
 	}
 
 }

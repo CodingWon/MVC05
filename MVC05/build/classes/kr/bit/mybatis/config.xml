@@ -4,6 +4,9 @@
   "https://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 <properties resource="kr/bit/mybatis/dbinfo.properties"/>
+<typeAliases>
+	<typeAlias type="kr.bit.model.MemberVO" alias="memberVO"/>
+</typeAliases>
   <environments default="development">
     <environment id="development">
       <transactionManager type="JDBC"/>
