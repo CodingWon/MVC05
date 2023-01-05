@@ -16,7 +16,7 @@ public class MemberDAO {
 	
 	static {
 		try {
-			String resource = "org/mybatis/example/mybatis-config.xml";
+			String resource = "kr/bit/mybatis/config.xml";
 			InputStream inputStream = Resources.getResourceAsStream(resource);
 			sessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
 		} catch (IOException e) {

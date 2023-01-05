@@ -2,12 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.bit.mybatis.mapper">
 	
-	<select id="memberList" resultType="memberVO">
+	<select id="memberList" resultType="kr.bit.model.MemberVO">
 		select * from member
 	</select>
 	
-	<insert id="memberInsert" parameterType="memberVO">
-		insert into member(id, pass, name, age, email, phone) 
-		values(#{id},#{pass},#{name},#{age},#{email},#{phone})
-	</insert>
 </mapper>
