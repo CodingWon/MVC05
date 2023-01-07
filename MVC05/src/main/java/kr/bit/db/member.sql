@@ -11,7 +11,7 @@ create table member(
 );
 -- SQL(CRUD), JDBC
 -- 검색
-select * from member;
+select name from member where id = 53454 and pass = 4345345
 
 
 -- insert(저장)

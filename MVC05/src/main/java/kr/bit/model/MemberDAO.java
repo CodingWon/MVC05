@@ -87,4 +87,12 @@ public class MemberDAO {
 		return cnt;
 	}
 	
+	//LOGIN
+	public String memberLogin(MemberVO vo) {
+		SqlSession session = sessionFactory.openSession();
+		String id = session.selectOne("memberLogin",vo);
+		session.close();
+		return id;
+	}
+	
 }

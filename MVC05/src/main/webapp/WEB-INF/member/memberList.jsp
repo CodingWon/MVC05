@@ -17,6 +17,14 @@
 <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
 <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js'></script>
 <script type="text/javascript">
+  $(document).ready(function(){
+	<c:if test= "${!empty msg}">
+		alert("${msg}");
+		<c:remove var ="msg" scope="session"/>
+	</c:if>
+	  
+  });
+
   function deleteFn(num){
 	  location.href="${ctx}/memberDelete.do?num="+num; // ?num=12
   }
@@ -37,6 +45,8 @@
 	 
 	 return true;
   }
+  
+  
 </script>
 </head>
 <body>
@@ -44,12 +54,12 @@
 	  <h2>회원 관리 시스템</h2>
 	  <div class="panel panel-default">
 	    <div class="panel-heading">
-	    	<form class="form-inline" action="${ctx}/login.do" method="post">
+	    	<form class="form-inline" action="${ctx}/memberLogin.do" method="post">
 			  <div class="form-group">
 		  	    <label for="user_id">ID:</label>
 			    <input type="text" class="form-control" id="user_id" name="user_id">
 			    <label for="pwd">PASSWORD:</label>
-			    <input type="password" class="form-control" id="pwd" name="password">
+			    <input type="password" class="form-control" id="password" name="password">
 			  </div>
 			  <button type="submit" class="btn btn-default" onclick="return check()">로그인</button>
 			</form>
