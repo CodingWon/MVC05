@@ -5,20 +5,29 @@ import java.io.InputStream;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+
+import com.mysql.jdbc.log.LogFactory;
 public class MemberDAO {
 	
 	private static SqlSessionFactory sessionFactory;
+	private static Logger logger = Logger.getGlobal();
+	
 	
 	static {
 		
 		try {
-			String resource = "kr/bit/mybatis/config.xml";
+			String resource = "kr/bit/mybatis/config.xml".trim();
+			logger.info("resource : " + resource);
+			
 			InputStream inputStream = Resources.getResourceAsStream(resource);
+			logger.info("inputStream : " + inputStream);
+			
 			sessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
