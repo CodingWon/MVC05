@@ -77,4 +77,14 @@ public class MemberDAO {
 		return memberVO;
 	}
 	
+	//Update
+	public int memberUpdate (MemberVO vo) {
+		SqlSession session = sessionFactory.openSession();
+		int cnt = session.update("memberUpdate",vo);
+		session.commit();
+		session.close();
+		
+		return cnt;
+	}
+	
 }

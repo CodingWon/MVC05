@@ -19,4 +19,9 @@
 		select * from member where num = #{num}
 	</select>
 	
+ 	<update id="memberUpdate" parameterType="memberVO" >
+		update member set  age =#{age} , email = #{email} , phone = #{phone}
+		where num =#{num}
+	</update> 
+	
 </mapper>
