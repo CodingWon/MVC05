@@ -68,4 +68,13 @@ public class MemberDAO {
 		return result;
 	}
 
+	//Content
+	public MemberVO memberContent(int num) {
+		SqlSession session = sessionFactory.openSession();
+		MemberVO memberVO = session.selectOne("memberContent",num);
+		session.close();
+		
+		return memberVO;
+	}
+	
 }
