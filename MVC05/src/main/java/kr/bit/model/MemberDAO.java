@@ -1,4 +1,5 @@
 package kr.bit.model;
+
 import java.io.IOException;
 import java.io.InputStream;
 // JDBC->myBatis, JPA
@@ -13,49 +14,58 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import com.mysql.jdbc.log.LogFactory;
+
 public class MemberDAO {
-	
+
 	private static SqlSessionFactory sessionFactory;
 	private static Logger logger = Logger.getGlobal();
-	
-	
+
 	static {
-		
+
 		try {
 			String resource = "kr/bit/mybatis/config.xml".trim();
 			logger.info("resource : " + resource);
-			
+
 			InputStream inputStream = Resources.getResourceAsStream(resource);
 			logger.info("inputStream : " + inputStream);
-			
+
 			sessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	
+
 	}
-	
-	//회원전체 리스트보기
+
+	// 회원전체 리스트보기
 	public List<MemberVO> memberList() {
-		//SqlSession 생성
+		// SqlSession 생성
 		SqlSession session = sessionFactory.openSession();
-		//mapper와 연결
+		// mapper와 연결
 		List<MemberVO> list = session.selectList("memberList");
 		session.close();
-		
+
 		return list;
 	}
-	//회원 가입
+
+	// 회원 가입
 	public int memberInsert(MemberVO memberVO) {
 		SqlSession session = sessionFactory.openSession();
-		int cnt =session.insert("memberInsert",memberVO);
+		int cnt = session.insert("memberInsert", memberVO);
 		session.commit();
 		session.close();
-		
+
 		return cnt;
 	}
 
+	// Delete
+	public int memberDelete(int num) {
+		SqlSession session = sessionFactory.openSession();
+		int result = session.delete("memberDelete",num);
+		session.commit();
+		session.close();
+		
+		return result;
+	}
+
 }
-
-

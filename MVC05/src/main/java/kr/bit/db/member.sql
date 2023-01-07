@@ -13,6 +13,7 @@ create table member(
 -- 검색
 select * from member;
 
+
 -- insert(저장)
 insert into member(id, pass, name, age, email, phone)
 values('admin','admin','관리자',40,'bit@naver.com','010-1111-1111');
