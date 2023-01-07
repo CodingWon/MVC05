@@ -6,4 +6,9 @@
 		select * from member
 	</select>
 	
+	<insert id="memberInsert">
+		insert into member (id,pass,name,age,email,phone)
+		values(#{id},#{pass},#{name},#{age},#{email},#{phone})
+	</insert>
+	
 </mapper>
