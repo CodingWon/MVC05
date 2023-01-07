@@ -20,6 +20,23 @@
   function deleteFn(num){
 	  location.href="${ctx}/memberDelete.do?num="+num; // ?num=12
   }
+  
+  function check(){
+	  var userId = $("#user_id").val();
+	  var password = $("#password").val();
+	  
+	 if(userId == "" || userId == null){
+		 alert("아이디 입력해주세요");
+		 return false;
+	 }
+	 
+	 if(password =="" || password == null){
+		 alert("비밀번호를 입력하세요");
+		 return false;
+	 }
+	 
+	 return true;
+  }
 </script>
 </head>
 <body>
@@ -34,7 +51,7 @@
 			    <label for="pwd">PASSWORD:</label>
 			    <input type="password" class="form-control" id="pwd" name="password">
 			  </div>
-			  <button type="submit" class="btn btn-default">로그인</button>
+			  <button type="submit" class="btn btn-default" onclick="return check()">로그인</button>
 			</form>
 	    </div>
 	    <div class="panel-body">
