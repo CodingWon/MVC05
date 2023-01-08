@@ -95,4 +95,18 @@ public class MemberDAO {
 		return id;
 	}
 	
+	//중복 체크
+	public String dbCheck(String id) {
+		SqlSession session = sessionFactory.openSession();
+		String dbId = session.selectOne("dbCheck",id);
+		String isDouble = "NO";
+		
+		if(dbId != null) {
+			isDouble = "Yes";
+		}
+		
+		session.close();
+		return isDouble; //Yes(중복), NO(아님)
+	}
+	
 }

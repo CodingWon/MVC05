@@ -28,5 +28,9 @@
 		select name from member where id = #{id} and pass = #{pass}
 	</select>
 	
+	<select id="dbCheck" parameterType="String" resultType="String">
+		select * from member where id = #{id}
+	</select>
+	
 	
 </mapper>

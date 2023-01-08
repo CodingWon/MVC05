@@ -21,6 +21,33 @@
    	  document.form1.reset();
      }
      
+     function doubleChk(){
+    	 if($("#id").val() ==''){
+    		 alert("아이디를 입력하세요");
+    		 $("#id").focuse();
+    		 return;
+    	 }
+    	 
+    	 var id = $("#id").val();
+    	 $.ajax({
+    		type : "POST",
+    		url : "<c:url value ='/memberDbcheck.do'/>",
+    		data : {"id" : id},
+    		success : dbCheck,
+    		error : function(){alert("error")}
+    	 });
+     }
+     
+     function dbCheck(data){
+    	 if(data == "Yes"){
+    		 alert("중복된 아이디 입니다.");
+    	 	$("#id").focuse();
+    	 }else{
+    		 alert("사용가능한 아이디 입니다.");
+    		 $("#id").focuse();
+    	 }
+     }
+     
   </script>
 </head>
 <body>
@@ -42,8 +69,8 @@
 	    <div class="col-sm-10">
 	    <table>
 	    	<tr>
-	    		<td><input type="text" class="form-control" id="id" name="id" placeholder="아이디를 입력하세요" style="width: 30%"></td>
-	    		<!-- <td><input type="button" value="중복 체크" onclick="doubleChk()" class="btn btn-warning"></td> -->
+	    		<td><input type="text" class="form-control" id="id" name="id" placeholder="아이디를 입력하세요" style="width: 50%"></td>
+	    		<td><input type="button" value="중복 체크" onclick="doubleChk()" class="btn btn-warning"></td>
 	    	</tr>
 	    </table>
 	    </div>
