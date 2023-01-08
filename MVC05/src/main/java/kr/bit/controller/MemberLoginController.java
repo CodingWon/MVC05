@@ -1,4 +1,4 @@
-package kr.bit.frontcontroller;
+package kr.bit.controller;
 
 import java.io.IOException;
 import java.util.logging.Logger;
@@ -7,7 +7,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import kr.bit.controller.Controller;
 import kr.bit.model.MemberDAO;
 import kr.bit.model.MemberVO;
 

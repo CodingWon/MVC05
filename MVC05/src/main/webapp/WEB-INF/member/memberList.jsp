@@ -54,15 +54,17 @@
 	  <h2>회원 관리 시스템</h2>
 	  <div class="panel panel-default">
 	    <div class="panel-heading">
-	    	<form class="form-inline" action="${ctx}/memberLogin.do" method="post">
-			  <div class="form-group">
-		  	    <label for="user_id">ID:</label>
-			    <input type="text" class="form-control" id="user_id" name="user_id">
-			    <label for="pwd">PASSWORD:</label>
-			    <input type="password" class="form-control" id="password" name="password">
-			  </div>
-			  <button type="submit" class="btn btn-default" onclick="return check()">로그인</button>
-			</form>
+	    	<c:if test="${sessionScope.userId == null || sessionScope.userId == ''}">
+		    	<form class="form-inline" action="${ctx}/memberLogin.do" method="post">
+				  <div class="form-group">
+			  	    <label for="user_id">ID:</label>
+				    <input type="text" class="form-control" id="user_id" name="user_id">
+				    <label for="pwd">PASSWORD:</label>
+				    <input type="password" class="form-control" id="password" name="password">
+				  </div>
+				  <button type="submit" class="btn btn-default" onclick="return check()">로그인</button>
+				</form>
+			</c:if>
 	    </div>
 	    <div class="panel-body">
 	     <div class="table-responsive">          
