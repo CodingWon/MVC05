@@ -65,6 +65,10 @@
 				  <button type="submit" class="btn btn-default" onclick="return check()">로그인</button>
 				</form>
 			</c:if>
+			<c:if test="${sessionScope.userId != null && sessionScope.userId != ''}">
+				${sessionScope.userId} 님 환영합니다.
+				<button type ="button" class = "btn btn-warning">로그아웃</button>
+			</c:if>
 	    </div>
 	    <div class="panel-body">
 	     <div class="table-responsive">          
