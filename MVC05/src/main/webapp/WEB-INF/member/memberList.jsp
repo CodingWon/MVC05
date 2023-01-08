@@ -95,7 +95,12 @@
 		    	    <td>${vo.age}</td>
 		    	    <td>${vo.email}</td>
 		    	    <td>${vo.phone}</td>
-		    	    <td><input type="button" value="삭제" class="btn btn-warning" onclick="deleteFn(${vo.num})"></td>
+		    	    <c:if test="${sessionScope.userId == vo.id }">
+		    	    	<td><input type="button" value="삭제" class="btn btn-warning" onclick="deleteFn(${vo.num})" ></td>
+		    	  	</c:if>
+    	  		    <c:if test="${sessionScope.userId != vo.id}">
+		    	    	<td><input type="button" value="삭제" class="btn btn-warning" onclick="deleteFn(${vo.num})" disabled></td>
+		    	  	</c:if>
 		    	  </tr>    	 
 				  </c:forEach>
 			      <tr>
