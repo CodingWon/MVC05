@@ -51,15 +51,16 @@
   }
   
   function memberList(){
- /* 	  var html = $("#collapse1 .panel-body").html();
-	 alert(html);   */
-	 $.ajax({
+  	/*   var html = $("#collapse1 .panel-body").html();
+	 alert(html);    */
+	 
+ 	 $.ajax({
 		url : "<c:url value = '/memberAjaxList.do'/>",
 		type : "get",
 		dataType : "json",
 		success : resultHtml,
 		error :function(){error ("error");}
-	 });
+	 }); 
   }
   
   function resultHtml(data){
@@ -78,17 +79,16 @@
 		  
 		  $.each(data, function(index,obj){
 		  html +=    "<tr>";
-		  html +=    	"<td>+"obj.name"+</td>";
-		  html +=	 	"<td>+"obj.id"+</td>";
-		  html +=    	"<td>+"obj.pass"+</td>";
-		  html +=	 	"<td>+"obj.name"+</td>";
-		  html +=    	"<td>+"obj.age"+</td>";
-		  html +=	 	"<td>+"obj.email"+</td>";
-		  html +=	 	"<td>+"obj.phone"+</td>";
+		  html +=    	"<td>"+obj.name+"</td>";
+		  html +=	 	"<td>"+obj.id+"</td>";
+		  html +=    	"<td>"+obj.pass+"</td>";
+		  html +=	 	"<td>"+obj.name+"</td>";
+		  html +=    	"<td>"+obj.age+"</td>";
+		  html +=	 	"<td>"+obj.email+"</td>";
+		  html +=	 	"<td>"+obj.phone+"</td>";
 		  html +=	 	"<td>삭제</td>";
 		  html +=    "</tr>";
 		  });
-		  
 		  html +="</table>";
 		  $("#collapse1 .panel-body").html(html); 
   }
@@ -168,7 +168,7 @@
 		      </h4>
 		    </div>
 		    <div id="collapse1" class="panel-collapse collapse">
-		      <div class="panel-body">asdf</div>
+		      <div class="panel-body"></div>
 		      <div class="panel-footer">Panel Footer</div>
 		    </div>
 		  </div>
