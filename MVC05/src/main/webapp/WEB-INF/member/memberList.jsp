@@ -50,6 +50,49 @@
 	  location.href = "<c:url value ='/memberLogout.do'/>";
   }
   
+  function memberList(){
+ /* 	  var html = $("#collapse1 .panel-body").html();
+	 alert(html);   */
+	 $.ajax({
+		url : "<c:url value = '/memberAjaxList.do'/>",
+		type : "get",
+		dataType : "json",
+		success : resultHtml,
+		error :function(){error ("error");}
+	 });
+  }
+  
+  function resultHtml(data){
+	  
+	   var html ="<table class='table table-hover'>";
+		  html +=    "<tr>";
+		  html +=    	"<th>번호</th>";
+		  html +=	 	"<th>아이디</th>";
+		  html +=    	"<th>비밀번호</th>";
+		  html +=	 	"<th>이름</th>";
+		  html +=    	"<th>나이</th>";
+		  html +=	 	"<th>이메일</th>";
+		  html +=	 	"<th>전화번호</th>";
+		  html +=	 	"<th>삭제</th>";
+		  html +=    	"</tr>";
+		  
+		  $.each(data, function(index,obj){
+		  html +=    "<tr>";
+		  html +=    	"<td>+"obj.name"+</td>";
+		  html +=	 	"<td>+"obj.id"+</td>";
+		  html +=    	"<td>+"obj.pass"+</td>";
+		  html +=	 	"<td>+"obj.name"+</td>";
+		  html +=    	"<td>+"obj.age"+</td>";
+		  html +=	 	"<td>+"obj.email"+</td>";
+		  html +=	 	"<td>+"obj.phone"+</td>";
+		  html +=	 	"<td>삭제</td>";
+		  html +=    "</tr>";
+		  });
+		  
+		  html +="</table>";
+		  $("#collapse1 .panel-body").html(html); 
+  }
+  
 </script>
 </head>
 <body>
@@ -117,6 +160,19 @@
 		  	회원관리 ERP
 		  </div>
 	  </div>
+	  <div class="panel-group">
+		  <div class="panel panel-default">
+		    <div class="panel-heading">
+		      <h4 class="panel-title">
+		        <a data-toggle="collapse" href="#collapse1" onclick="memberList()">회원 리스트 보기</a>
+		      </h4>
+		    </div>
+		    <div id="collapse1" class="panel-collapse collapse">
+		      <div class="panel-body">asdf</div>
+		      <div class="panel-footer">Panel Footer</div>
+		    </div>
+		  </div>
+		</div>
 	</div>
 </body>
 </html>
