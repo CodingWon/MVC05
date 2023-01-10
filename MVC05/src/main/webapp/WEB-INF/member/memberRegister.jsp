@@ -48,6 +48,32 @@
     	 }
      }
      
+     function add2(){
+    	 if($("#file").val() !=''){
+    		 var formData = new FormData();
+    		 formData.append("file",$("input[name=file]")[0].files[0]);
+    		 $.ajax({
+    			 url : "<c:url value='/fileAdd.do'/>", //파일 업로드
+    			 type : "post",
+    			 data : formData,
+    			 processData : false,
+    			 contentType : false,
+    			 success : function(data){ //업로드된 실제파일 이름을 전달 받기
+    				 $("#filename").val(data);
+    			 		document.form1.action="<c:url value='/memberInsert.do' />"; //text 데이터를 저장하는 부분
+    			 		document.form1.submit();
+    				 
+    			 },
+    			 error : function(){alert("error")}
+    			 
+    			 
+    		 })
+    		 
+    	 }else{
+    		 
+    	 }
+     }
+     
   </script>
 </head>
 <body>
@@ -104,13 +130,20 @@
 	    <div class="col-sm-10">
 	      <input type="text" class="form-control" id="phone" name="phone" placeholder="전화번호를 입력하세요" style="width: 30%">
 	    </div>
-	  </div>	
+	  </div>
+  	    <div class="form-group">
+	    <label class="control-label col-sm-2" for="">첨부파일</label>
+	    <div class="col-sm-10">
+	      <input type="file" class="control-label" id="file" name="file" style="width: 30%">
+	    </div>
+	  </div>
+	  	<input type ="hidden" name="filename" id="filename" >	
 	 </form>
     </div>
     <div class="panel-footer" style="text-align: center;">
        
        <c:if test="${sessionScope.userId==null || sessionScope.userId==''}"> 
-         <input type="button" value="등록" class='btn btn-primary' onclick="add()"/>
+         <input type="button" value="등록" class='btn btn-primary' onclick="add2()"/>
        </c:if>
        <c:if test="${sessionScope.userId!=null && sessionScope.userId!=''}"> 
           <input type="button" value="등록" class='btn btn-primary' onclick="add()" disabled="disabled"/>
