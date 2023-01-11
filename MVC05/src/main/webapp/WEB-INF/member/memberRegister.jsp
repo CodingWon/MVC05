@@ -61,7 +61,7 @@
     			 success : function(data){ //업로드된 실제파일 이름을 전달 받기
     				 
     				 alert(data);
-    			/* 	 
+
     				 $("#filename").val(data);
     			 		document.form1.action="<c:url value='/memberInsert.do' />"; //text 데이터를 저장하는 부분
     			 		document.form1.submit(); */
