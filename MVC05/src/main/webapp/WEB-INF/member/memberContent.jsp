@@ -16,12 +16,36 @@
 <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
 <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js'></script>
 <script type="text/javascript">
+
    function update(){
-	  document.form1.action="<c:url value='/memberUpdate.do'/>"; 
-	  document.form1.submit();
+	   if($("#file").val() !=''){
+  		 var formData = new FormData();
+  		 formData.append("file",$("input[name=file]")[0].files[0]);
+  		 $.ajax({
+  			 url : "<c:url value='/fileAdd.do'/>", //파일 업로드
+  			 type : "post",
+  			 data : formData,
+  			 processData : false,
+  			 contentType : false,
+  			 success : function(data){ //업로드된 실제파일 이름을 전달 받기
+  				  $("#filename").val(data);
+ 			  	 	alert(data);
+				  document.form1.action="<c:url value='/memberUpdate.do'/>?filename="+data;
+				  document.form1.submit();
+			  },
+			  error : function(){alert("error")}
+		  })
+		  
+	  }else{
+		  document.form1.action="<c:url value='/memberUpdate.do'/>"; 
+		  document.form1.submit();
+	  }
    }
    function frmreset(){
 	  document.form1.reset();
+   }
+   function getFile(filename){
+	   location.href="<c:url value='/fileGet.do'/>?filename=" +filename;
    }
 </script>
 </head>
@@ -30,8 +54,13 @@
   <h2>상세화면</h2>
   <div class="panel panel-default">
     <div class="panel-heading">
-     <c:if test="${sessionScope.userId!=null && sessionScope.userId!=''}">
-       <label>${sessionScope.userName}님이 로그인 하셨습니다.</label>
+     <c:if test="${sessionScope.userId!=null && sessionScope.userId!='' && sessionScope.userId == vo.id}">
+       <label>
+       		<c:if test="${!empty vo.filename }">
+       			<img src="<c:out value ='file_reop/${vo.filename }' />" width="60px" height="60px" />
+       		</c:if>
+       		${sessionScope.userName}님이 로그인 하셨습니다.
+       </label>
      </c:if>
      <c:if test="${sessionScope.userId==null || sessionScope.userId==''}">
       <label>안녕하세요</label>
@@ -87,7 +116,7 @@
          <div class="col-sm-10">
          	<input type="file" id="file" name="file">
 			<c:if test="${vo.filename !=null && vo.filename !='' }">
-				<c:out value="${vo.filename }" />
+				<a href="javascript:getFile('${vo.filename}')"><c:out value="${vo.filename }" /></a> 
 				<c:if test="${sessionScope.userId != null && sessionScope.userId == vo.id }">
 					<span class="glyphicon glyphicon-remove"></span>
 				</c:if>  
@@ -103,7 +132,7 @@
          </c:if>
        
          <c:if test="${sessionScope.userId!=vo.id}">
-          <input type="button" value="수정하기" class='btn btn-primary' onclick="update()" disabled="disabled"/>
+          <input type="button" value="수정하기" class='btn btn-primary'  disabled="disabled"/>
          </c:if> 
        </c:if> 
        <input type="button" value="취소" class='btn btn-warning' onclick="frmreset()"/>

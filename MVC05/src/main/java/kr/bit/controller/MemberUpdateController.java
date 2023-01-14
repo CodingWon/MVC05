@@ -21,12 +21,19 @@ public class MemberUpdateController implements Controller{
 		int age=Integer.parseInt(request.getParameter("age"));
 		String email=request.getParameter("email");
 		String phone=request.getParameter("phone");
+		String filename =request.getParameter("filename");
+		
 		
 		MemberVO vo=new MemberVO();
+		
 		vo.setNum(num);
 		vo.setAge(age);
 		vo.setEmail(email);
 		vo.setPhone(phone);
+		
+		if(filename != null && !"".equals(filename)) {
+			vo.setFilename(filename);
+		}
 		
 		MemberDAO dao=new MemberDAO();
 		int cnt=dao.memberUpdate(vo);

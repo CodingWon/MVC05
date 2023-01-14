@@ -26,7 +26,7 @@ delete from member where id='admin';
 
 drop table member1;
 
-
+select * from member1
 
 create table member1(
  num int primary key auto_increment,

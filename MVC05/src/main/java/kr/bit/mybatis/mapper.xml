@@ -25,7 +25,7 @@
 	</select>
 	
  	<update id="memberUpdate" parameterType="memberVO" >
-		update member1 set  age =#{age} , email = #{email} , phone = #{phone}
+		update member1 set  age =#{age} , email = #{email} , phone = #{phone}, filename=#{filename}
 		where num =#{num}
 	</update> 
 	
