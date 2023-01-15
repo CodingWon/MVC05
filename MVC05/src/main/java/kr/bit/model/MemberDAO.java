@@ -77,6 +77,15 @@ public class MemberDAO {
 		
 		return result;
 	}
+	
+	//fileDelte 
+	public int memberDeleteFile(int num) {
+		SqlSession session = sessionFactory.openSession();
+		int result = session.update("memberDeleteFile",num);
+		session.commit();
+		session.close();
+		return result;
+	}
 
 	//Content
 	public MemberVO memberContent(int num) {

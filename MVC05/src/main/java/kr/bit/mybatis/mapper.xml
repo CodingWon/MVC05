@@ -37,5 +37,9 @@
 		select * from member1 where id = #{id}
 	</select>
 	
+	<update id="memberDeleteFile" parameterType="Integer">
+		update member1 set filename ='' where num = #{num}
+	</update>
+	
 	
 </mapper>

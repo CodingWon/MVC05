@@ -47,6 +47,11 @@
    function getFile(filename){
 	   location.href="<c:url value='/fileGet.do'/>?filename=" +filename;
    }
+   
+   function delfile(num, filename){
+	   	alert(num + " " + filename );
+	    location.href = "<c:url value ='/fileDel.do' />?num="+num+"&filename="+filename;
+   }
 </script>
 </head>
 <body>
@@ -118,7 +123,7 @@
 			<c:if test="${vo.filename !=null && vo.filename !='' }">
 				<a href="javascript:getFile('${vo.filename}')"><c:out value="${vo.filename }" /></a> 
 				<c:if test="${sessionScope.userId != null && sessionScope.userId == vo.id }">
-					<span class="glyphicon glyphicon-remove"></span>
+					<a href ="javascript:delfile('${vo.num}','${vo.filename}')" ><span class="glyphicon glyphicon-remove"></span></a>
 				</c:if>  
 			</c:if>
          </div>
